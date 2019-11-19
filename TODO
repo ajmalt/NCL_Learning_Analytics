@@ -1,5 +1,5 @@
 Write Main README file
-Write data folder README file - add description of data (esp new frames)
+Write data folder README file - add description of data (esp. new frames)
 
 
 
@@ -12,6 +12,7 @@ a. determine whether the archetypes might need new IDs (we are going off student
 
 2. Enrollment data
 a. Date columns to be converted from factors to dates: enrolled_at; unenrolled_at; fully_participated_at; purchased_statement_at.
+b. Huge amount of 'unknowns'. Create frame to filter unknowns.
 
 3. Question-Reponse data
 a. Integer columns to be converted to factors: week_number; step_number; question_number.
@@ -29,7 +30,7 @@ b. Convert factor column to date: responded_at.
 a. eliminate first_name and last_name columns (they contain nothing valuable due to anonymisation)
 
 7. Video stats
-a. 
+a. 'unpivot' video data
 
 
 
@@ -48,6 +49,7 @@ Enrollments
 1. What does fully-participated_at mean?
 2. What does purchased_statement_at mean?
 3. Is country their nationality and detected_country where they are taking the course from?
+4. qplots show a huge number of unknowns. Should these be excluded? What proportion of the data actually contains the fields?
 
 Question-response data
 1. Are these the same questions every year?
@@ -76,16 +78,10 @@ Video stats
 Ideas for analysis
 1. Archetype analysis - are certain archetypes more or less likely to drop out?
 2. What causes the leaving rate to increase? Are there correlations between... archetypes? geographic areas? etc.?
+a. What factors are the largest? From the initial look, time seems to be the key one (N.B. There are two time categories).
 3. Can the response rate be calculated? Will increasing/dcreasing response rates show us anything? Can the be correlated with satisfaction?
-4. Can can the step_position column be used to link video stats data to step activity (broken down in any way, by specific lecture? by region)? to any other data frame?
+4. Can can the step_position column be used to link video stats data to step activity (broken down in any way, by specific lecture? by region)? To any other data frame?
 5. Would analysing the changes in the video frame work year on year? Broken down by region? Any point to doing that? Correlate with... drop out rate? Other?
-
-
-
-
-
-
-
-
-
-
+6. Can we do some demographics so see how the numbers of right and wrong answers vary by region/country?
+7. Are the wrongness fo the answers predictive of someone leaving the course?
+8. Which students were leaving experience ratings? When did they leave them? How many students left them as a proportion of taking the course? To what extent did the reviews vary week to week? Was there an upward/downward trend?

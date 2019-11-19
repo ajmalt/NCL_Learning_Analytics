@@ -15,29 +15,35 @@ str(cyber.security.3.archetype.survey.responses)
 head(cyber.security.3.archetype.survey.responses)
 levels(cyber.security.3.archetype.survey.responses$archetype)
 cyber.security.3.archetype.survey.responses$id
+qplot(data = cyber.security.3.archetype.survey.responses, x = archetype)
 
 summary(cyber.security.4.archetype.survey.responses)
 str(cyber.security.4.archetype.survey.responses)
 levels(cyber.security.4.archetype.survey.responses$archetype)
 cyber.security.4.archetype.survey.responses$id
+qplot(data = cyber.security.4.archetype.survey.responses, x = archetype)
 
 summary(cyber.security.5.archetype.survey.responses)
 str(cyber.security.5.archetype.survey.responses)
 levels(cyber.security.5.archetype.survey.responses$archetype)
+qplot(data = cyber.security.5.archetype.survey.responses, x = archetype)
 
 summary(cyber.security.6.archetype.survey.responses)
 str(cyber.security.6.archetype.survey.responses)
 levels(cyber.security.6.archetype.survey.responses$archetype)
+qplot(data = cyber.security.6.archetype.survey.responses, x = archetype)
 
 summary(cyber.security.7.archetype.survey.responses)
 str(cyber.security.7.archetype.survey.responses)
 levels(cyber.security.7.archetype.survey.responses$archetype)
+qplot(data = cyber.security.7.archetype.survey.responses, x = archetype)
 
 
 #Enrollment data
 summary(cyber.security.1.enrolments)
 str(cyber.security.1.enrolments)
 head(cyber.security.1.enrolments)
+qplot(data = cyber.security.1.enrolments, x = gender)
 
 summary(cyber.security.2.enrolments)
 str(cyber.security.2.enrolments)
@@ -73,18 +79,22 @@ str(cyber.security.4.leaving.survey.responses)
 
 summary(cyber.security.5.leaving.survey.responses)
 str(cyber.security.5.leaving.survey.responses)
+qplot(data = cyber.security.5.leaving.survey.responses, x = leaving_reason)
 
 summary(cyber.security.6.leaving.survey.responses)
 str(cyber.security.6.leaving.survey.responses)
+qplot(data = cyber.security.6.leaving.survey.responses, x = leaving_reason)
 
 summary(cyber.security.7.leaving.survey.responses)
 str(cyber.security.7.leaving.survey.responses)
+qplot(data = cyber.security.7.leaving.survey.responses, x = leaving_reason)
 
 
 #question-response data
 summary(cyber.security.1.question.response)
 str(cyber.security.1.question.response)
 head(cyber.security.1.question.response)
+qplot(data = cyber.security.1.question.response, x = correct)
 
 summary(cyber.security.2.question.response)
 str(cyber.security.2.question.response)
@@ -148,9 +158,11 @@ summary(cyber.security.5.weekly.sentiment.survey.responses)
 
 str(cyber.security.6.weekly.sentiment.survey.responses)
 summary(cyber.security.6.weekly.sentiment.survey.responses)
+qplot(data = cyber.security.6.weekly.sentiment.survey.responses, x = experience_rating)
 
 str(cyber.security.7.weekly.sentiment.survey.responses)
 summary(cyber.security.7.weekly.sentiment.survey.responses)
+qplot(data = cyber.security.7.weekly.sentiment.survey.responses, x = experience_rating)
 
 
 #team members
