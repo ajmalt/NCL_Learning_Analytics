@@ -1,0 +1,13 @@
+Main README file
+Data folder README file - add description of data
+
+Munging scripts
+1. Archetype data
+a. determine whether the archetypes might need new IDs
+
+General data questions
+1. What years are the data from?
+
+Data exploration (initial questions)
+1. What are the archetypes mean and why are they interesting (from the archetype questionaire)? "Advancers", "Explorers", "Fixers", "Flourishers", "Hobbyists", "Other", "Vitalisers", "Preparers".
+2. The "Preparers" archetype only appears in the 4th yesr's questionnaire and onwards. Was it introduced in Y4 or was it an option previously but with no one being categorised as such?
