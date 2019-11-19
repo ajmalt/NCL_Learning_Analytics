@@ -174,6 +174,28 @@ levels(cyber.security.7.team.members$team_role)
 
 
 #video stats
+str(cyber.security.3.video.stats)
+summary(cyber.security.3.video.stats)
+
+str(cyber.security.4.video.stats)
+summary(cyber.security.4.video.stats)
+
+str(cyber.security.5.video.stats)
+summary(cyber.security.5.video.stats)
+
+str(cyber.security.6.video.stats)
+summary(cyber.security.6.video.stats)
+
+str(cyber.security.7.video.stats)
+summary(cyber.security.7.video.stats)
+
+
+
+
+
+
+
+
 
 
 

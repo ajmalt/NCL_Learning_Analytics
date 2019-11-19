@@ -28,13 +28,17 @@ b. Convert factor column to date: responded_at.
 6. Team members
 a. eliminate first_name and last_name columns (they contain nothing valuable due to anonymisation)
 
+7. Video stats
+a. 
+
+
 
 General data questions
 1. What years are the data from? (see main PDF)
 
 
 
-Questions from data exploration
+Questions from data exploration (N.B. turn into assumptions)
 
 Archetypes - initial questions
 1. What are the archetypes mean and why are they interesting (from the archetype questionaire)? "Advancers", "Explorers", "Fixers", "Flourishers", "Hobbyists", "Other", "Vitalisers", "Preparers".
@@ -64,9 +68,24 @@ Team members
 2. Is there any way to work out which instructor taught which students?
 3. why are some team roles only there on certain years? 
 
+Video stats
+1. 
+
 
 
 Ideas for analysis
 1. Archetype analysis - are certain archetypes more or less likely to drop out?
 2. What causes the leaving rate to increase? Are there correlations between... archetypes? geographic areas? etc.?
 3. Can the response rate be calculated? Will increasing/dcreasing response rates show us anything? Can the be correlated with satisfaction?
+4. Can can the step_position column be used to link video stats data to step activity (broken down in any way, by specific lecture? by region)? to any other data frame?
+5. Would analysing the changes in the video frame work year on year? Broken down by region? Any point to doing that? Correlate with... drop out rate? Other?
+
+
+
+
+
+
+
+
+
+
