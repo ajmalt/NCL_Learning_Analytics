@@ -64,6 +64,9 @@ Video stats
 1. 
 
 
+Assumptions
+- have preserved time by creating new date columns rather than overwriting existing factor columns.
+
 
 Ideas for analysis
 1. Archetype analysis - are certain archetypes more or less likely to drop out?
