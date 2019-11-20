@@ -19,25 +19,66 @@ enrollmentData <- rbind(cyber.security.1.enrolments, cyber.security.2.enrolments
 #str(enrollmentData)
 
 
-#remove redundant datasets
-#rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
-#   cyber.security.6.enrolments, cyber.security.7.enrolments)
+#convert CourseID from integer to factor
+enrollmentData$courseID <- factor(enrollmentData$courseID)
+#levels(enrollmentData$courseID)
+
+
+#replace missing values with NA
+library(dplyr)
+enrollmentData$unenrolled_at <- na_if(enrollmentData$unenrolled_at, "")
+enrollmentData$fully_participated_at <- na_if(enrollmentData$fully_participated_at, "")
+enrollmentData$purchased_statement_at <- na_if(enrollmentData$purchased_statement_at, "")
+enrollmentData$gender <- na_if(enrollmentData$gender, "Unknown")
+enrollmentData$country <- na_if(enrollmentData$country, "Unknown")
+enrollmentData$age_range <- na_if(enrollmentData$age_range, "Unknown")
+enrollmentData$highest_education_level <- na_if(enrollmentData$highest_education_level, "Unknown")
+enrollmentData$employment_status <- na_if(enrollmentData$employment_status, "Unknown")
+enrollmentData$employment_area <- na_if(enrollmentData$employment_area, "Unknown")
+enrollmentData$detected_country <- na_if(enrollmentData$detected_country, "--")
 
 
 #Create date columns from factors: enrolled_at; unenrolled_at; fully_participated_at; purchased_statement_at.
 #typeof(enrollmentData$enrolled_at)
 #typeof(as.character(enrollmentData$enrolled_at))
 enrollmentData$enrollment_date <- as.Date(as.character(enrollmentData$enrolled_at))
+enrollmentData$unenrollment_date <- as.Date(as.character(enrollmentData$unenrolled_at))
+fully_participated_date <- as.Date(as.character(enrollmentData$fully_participated_at))
+
+x
+class(x)
+rm(x)
+
+class(enrollmentData$unenrollment_date)
+
+
+
+enrollmentData$unenrollment_date
+
 View(enrollmentData)
+head(enrollmentData)
+
+
+#?
 
 
 
 
-#replace missing values with NA
-library(dplyr)
 
-enrollmentData$unenrolled_at <- na_if(enrollmentData$unenrolled_at, "")
+head(enrollmentData)
+str(enrollmentData)
+
+
+enrollmentData$purchased_statement_at <- na_if(enrollmentData$purchased_statement_at, "")
+enrollmentData$country
+
+
+
+
+
+
 enrollmentData$unenrolled_at
+
 
 
 #Is the error here due to the empty cells?
@@ -48,17 +89,10 @@ enrollmentData$unenrolled_at[1]
 #str(enrollmentData)
 
 
+#Huge amount of NA values - deal with by creating frames for each type of information?
 
 
 
-
-
-
-
-
-
-
-
-
-
-#Huge amount of 'unknowns'. Create frame to filter unknowns.
+#remove redundant datasets
+#rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
+#   cyber.security.6.enrolments, cyber.security.7.enrolments)
