@@ -7,9 +7,6 @@ Munging scripts
 ALL: add years in when merging datasets - better: add course IDs and then use that later.
 
 
-3. Question-Reponse data
-a. Integer columns to be converted to factors: week_number; step_number; question_number.
-b. Factors to be converted to dates.
 
 4. Step activity data
 a. Convert number column and integer columns to factors: step; week_number; step_number.
@@ -81,3 +78,4 @@ a. What factors are the largest? From the initial look, time seems to be the key
 9. Which demographics are more likely to leave reviews of the course? Region? Gender?
 10. box plot to show average time between those who enroll and then drop out? What's the distribution?
 11. Can enrollment rate be used to calculate conversion rates year on year?
+12. From the leaving survey data, are types of reasons correlated with whether they have completed particular steps (or any steps?)

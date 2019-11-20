@@ -38,61 +38,18 @@ enrollmentData$employment_area <- na_if(enrollmentData$employment_area, "Unknown
 enrollmentData$detected_country <- na_if(enrollmentData$detected_country, "--")
 
 
-#Create date columns from factors: enrolled_at; unenrolled_at; fully_participated_at; purchased_statement_at.
+#Create date columns from factor columns
 #typeof(enrollmentData$enrolled_at)
 #typeof(as.character(enrollmentData$enrolled_at))
 enrollmentData$enrollment_date <- as.Date(as.character(enrollmentData$enrolled_at))
 enrollmentData$unenrollment_date <- as.Date(as.character(enrollmentData$unenrolled_at))
-fully_participated_date <- as.Date(as.character(enrollmentData$fully_participated_at))
-
-x
-class(x)
-rm(x)
-
-class(enrollmentData$unenrollment_date)
+enrollmentData$fully_participated_date <- as.Date(as.character(enrollmentData$fully_participated_at))
+enrollmentData$purchased_statement_date <- as.Date(as.character(enrollmentData$purchased_statement_at))
 
 
-
-enrollmentData$unenrollment_date
-
-View(enrollmentData)
-head(enrollmentData)
-
-
-#?
-
-
-
-
-
-head(enrollmentData)
-str(enrollmentData)
-
-
-enrollmentData$purchased_statement_at <- na_if(enrollmentData$purchased_statement_at, "")
-enrollmentData$country
-
-
-
-
-
-
-enrollmentData$unenrolled_at
-
-
-
-#Is the error here due to the empty cells?
-enrollmentData$unenrolled_at
-enrollmentData$unenrollment_date <- as.Date(as.character(enrollmentData$unenrolled_at))
-enrollmentData$unenrolled_at[1]
-#head(enrollmentData)
-#str(enrollmentData)
-
-
-#Huge amount of NA values - deal with by creating frames for each type of information?
-
+#Huge amount of NA values - deal with by creating frames for each type of information for each particular analysis?
 
 
 #remove redundant datasets
-#rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
-#   cyber.security.6.enrolments, cyber.security.7.enrolments)
+rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
+   cyber.security.6.enrolments, cyber.security.7.enrolments)
