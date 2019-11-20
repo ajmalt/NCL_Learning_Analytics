@@ -78,4 +78,6 @@ a. What factors are the largest? From the initial look, time seems to be the key
 9. Which demographics are more likely to leave reviews of the course? Region? Gender?
 10. box plot to show average time between those who enroll and then drop out? What's the distribution?
 11. Can enrollment rate be used to calculate conversion rates year on year?
-12. From the leaving survey data, are types of reasons correlated with whether they have completed particular steps (or any steps?)
+12. From the leaving survey data, are types of reasons correlated with whether they have completed particular steps (or any steps?) With the Quiz steps in particular?
+13. From the Q&A response data, can we see whether the harder questions (i.e. the number of people that got them wrong), cause more people to drop out?
+14. Does everyone answer the quizzes on the same day? Are those who do not answer on the same day predictive of anything?
