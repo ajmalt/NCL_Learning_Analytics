@@ -1,3 +1,18 @@
+Learning analytics files
+
+Empty datasets (removed in munging scripts)
+cyber.security.1.archetype.survey.responses
+cyber.security.2.archetype.survey.responses
+
+datasets merged into archetypeData
+cyber.security.3.archetype.survey.responses
+cyber.security.4.archetype.survey.responses
+cyber.security.5.archetype.survey.responses
+cyber.security.6.archetype.survey.responses
+cyber.security.7.archetype.survey.responses
+
+
+SUPPORTED FILES
 Here you'll store your raw data files. If they are encoded in a supported file format, they'll automatically be loaded when you call `load.project()`.
 
 Supported File Extensions

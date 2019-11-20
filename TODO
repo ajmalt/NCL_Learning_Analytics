@@ -4,15 +4,8 @@ Write data folder README file - add description of data (esp. new frames)
 
 
 Munging scripts
-N.B. empty datasets will have all columns categorised as logical types - need to alter this, or not if there's no data?
-ALL: add years in when merging datasets
+ALL: add years in when merging datasets - better: add course IDs and then use that later.
 
-1. Archetype data
-a. determine whether the archetypes might need new IDs (we are going off student hashes though)
-
-2. Enrollment data
-a. Date columns to be converted from factors to dates: enrolled_at; unenrolled_at; fully_participated_at; purchased_statement_at.
-b. Huge amount of 'unknowns'. Create frame to filter unknowns.
 
 3. Question-Reponse data
 a. Integer columns to be converted to factors: week_number; step_number; question_number.
@@ -58,7 +51,7 @@ Question-response data
 4. Can the other years be compared at all? (Does it make any sense to merge them?)
 
 Step activity
-1. what is the significance of steps?
+1. what is the significance of steps? See PDFs for this - steps in each section of the course?
 2. Why is the maximum number for each dataset 23, except the first, where it is 21?
 3. does last_completed_at denote the closure of (a phase of) the course?
 
