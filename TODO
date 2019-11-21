@@ -5,7 +5,7 @@ Write data folder README file - add description of data (esp. new frames)
 
 Munging scripts
 ALL: add years in when merging datasets - better: add course IDs and then use that later.
-
+CHECK STEPS IN PDFs AND SEE IF THEY HAVE SUBSTANTIALLY ALTERED
 
 
 4. Step activity data
@@ -84,3 +84,12 @@ a. What factors are the largest? From the initial look, time seems to be the key
 12. From the leaving survey data, are types of reasons correlated with whether they have completed particular steps (or any steps?) With the Quiz steps in particular?
 13. From the Q&A response data, can we see whether the harder questions (i.e. the number of people that got them wrong), cause more people to drop out?
 14. Does everyone answer the quizzes on the same day? Are those who do not answer on the same day predictive of anything?
+15. Do certain videos need more work based on the amount of interest that tails off throughout it?
+
+Automation
+-should the scripts be able to cope with an arbitrary file?
+
+
+Testing
+- can I confirm that the data is in the format that I expect? Can I test whether it has been munged correctly?
+- ...?
