@@ -21,7 +21,7 @@ rawVideoStats <- rbind(cyber.security.3.video.stats, cyber.security.4.video.stat
 #Conversion of columns to factors
 rawVideoStats$courseID <- factor(rawVideoStats$courseID)
 rawVideoStats$step_position <- factor(rawVideoStats$step_position)
-str(rawVideoStats)
+#str(rawVideoStats)
 
 
 #Create geographic video dataset
@@ -40,7 +40,7 @@ geographicVidData$region <- gsub("antarctica_views_percentage", "Antartica", geo
 geographicVidData$region <- factor(geographicVidData$region)
 #levels(geographicVidData$region) #quick check
 #str(geographicVidData) #quick check
-View(geographicVidData) #quick check
+#View(geographicVidData) #quick check
 
 
 #Create device video dataset

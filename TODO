@@ -2,38 +2,23 @@ Write Main README file
 Write data folder README file - add description of data (esp. new frames)
 
 
-
-Munging scripts
-ALL: add years in when merging datasets - better: add course IDs and then use that later.
-CHECK STEPS IN PDFs AND SEE IF THEY HAVE SUBSTANTIALLY ALTERED
-
-
-4. Step activity data
-a. Convert number column and integer columns to factors: step; week_number; step_number.
-b. Convert factor columns to dates: first_visited_at; last_completed_at.
-
-5. Weekly sentiment data
-a. Convert integer columns to factors: week_number; experience_rating.
-b. Convert factor column to date: responded_at.
-
-6. Team members
-a. eliminate first_name and last_name columns (they contain nothing valuable due to anonymisation)
-
-7. Video stats
-a. 'unpivot' video data
-
-
-
-General data questions
-1. What years are the data from? (see main PDF)
-
+Further data engineering
+1. LookUp tables? Course years (see PDFs), course steps, video properties, etc.?
 
 
 Questions from data exploration (N.B. turn into assumptions)
+- have preserved time by creating new date columns rather than overwriting existing factor columns.
 
-Archetypes - initial questions
-1. What are the archetypes mean and why are they interesting (from the archetype questionaire)? "Advancers", "Explorers", "Fixers", "Flourishers", "Hobbyists", "Other", "Vitalisers", "Preparers".
-2. The "Preparers" archetype only appears in the 4th yesr's questionnaire and onwards. Was it introduced in Y4 or was it an option previously but with no one being categorised as such?
+Archetype assumptions
+- "Preparers" archetype only appears in the 4th year's questionnaire and onwards. I assume that it was an option previously but no one in this category had enrolled.
+
+Question-response data
+- assume that analysis can proceed without taking into account other possible questions (are there any obvious cluies that there are other questions out there?)
+
+Team members data
+- assume that these are all staff members and should be excluded for the purposes of the analysis.
+- assume the different team roles are unimportant for the analysis.
+
 
 Enrollments
 1. What does fully-participated_at mean?
@@ -52,24 +37,12 @@ Step activity
 2. Why is the maximum number for each dataset 23, except the first, where it is 21?
 3. does last_completed_at denote the closure of (a phase of) the course?
 
-Weekly survey responses
-1. 
-
-Team members
-1. Are these all the instructors on the course? If so, should this data be used to exclude certain people from analysis?
-2. Is there any way to work out which instructor taught which students?
-3. why are some team roles only there on certain years? 
-
-Video stats
-1. 
 
 
-Assumptions
-- have preserved time by creating new date columns rather than overwriting existing factor columns.
 
 
 Ideas for analysis
-1. Archetype analysis - are certain archetypes more or less likely to drop out?
+
 2. What causes the leaving rate to increase? Are there correlations between... archetypes? geographic areas? etc.?
 a. What factors are the largest? From the initial look, time seems to be the key one (N.B. There are two time categories).
 3. Can the response rate be calculated? Will increasing/dcreasing response rates show us anything? Can the be correlated with satisfaction?
@@ -87,9 +60,9 @@ a. What factors are the largest? From the initial look, time seems to be the key
 15. Do certain videos need more work based on the amount of interest that tails off throughout it?
 
 Automation
--should the scripts be able to cope with an arbitrary file?
+-should the scripts be able to cope with an arbitrary file numbers (i.e. loop through files with similar naming conventions)?
 
 
 Testing
-- can I confirm that the data is in the format that I expect? Can I test whether it has been munged correctly?
+- can I confirm that the data is in the format that I expect (columns, column names, etc.)? Can I test whether it has been munged correctly?
 - ...?
