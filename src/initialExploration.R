@@ -38,6 +38,8 @@ str(cyber.security.7.archetype.survey.responses)
 levels(cyber.security.7.archetype.survey.responses$archetype)
 qplot(data = cyber.security.7.archetype.survey.responses, x = archetype)
 
+    #post munging
+    qplot(data = archetypeData, x = archetype, fill = archetype)
 
 #Enrollment data
 summary(cyber.security.1.enrolments)
@@ -63,7 +65,25 @@ str(cyber.security.6.enrolments)
 summary(cyber.security.7.enrolments)
 str(cyber.security.7.enrolments)
 
-
+    #post munging
+    str(enrollmentData)
+    #COMMON THEME - there is a huge proportion of missing data. Charts for each category showing the amount of knowns to unknowns? Possible to use qplots for pie charts for this purpose?
+    qplot(data = enrollmentData, x = gender, fill = gender) #by gender
+    #Can I exclude unknowns from the above? Can I calculate the rato of unknowns to complete? (Data quality report)
+    qplot(data = enrollmentData, x = country, fill = country) #by country
+    #Histogram is effectively useless due to amount of countries - limit to top 5-10? Pie chart? extract vector of contries that does not include NA?
+    qplot(data = enrollmentData, x = age_range, fill = age_range) #by age range
+    #Can I exclude unknowns from the above? Can I calculate the rato of unknowns to complete? (Data quality report)
+    qplot(data = enrollmentData, x = highest_education_level, fill = highest_education_level) #by highest education level
+    #Can I exclude unknowns from the above? Can I calculate the rato of unknowns to complete? (Data quality report)
+    qplot(data = enrollmentData, x = employment_status, fill = employment_status)
+    #Can I exclude unknowns from the above? Can I calculate the rato of unknowns to complete? (Data quality report)
+    qplot(data = enrollmentData, x = employment_area, fill = employment_area)
+    #Can I exclude unknowns from the above? Can I calculate the rato of unknowns to complete? (Data quality report)
+    qplot(data = enrollmentData, x = detected_country, fill = detected_country)
+    #Histogram is effectively useless due to amount of countries - limit to top 5-10? Pie chart? N.B. there is very little unknown data here, which is awesome.
+    #Anything of significance in time series data?
+    
 #Leaving survey responses
 summary(cyber.security.1.leaving.survey.responses)
 str(cyber.security.1.leaving.survey.responses)
@@ -88,6 +108,8 @@ qplot(data = cyber.security.6.leaving.survey.responses, x = leaving_reason)
 summary(cyber.security.7.leaving.survey.responses)
 str(cyber.security.7.leaving.survey.responses)
 qplot(data = cyber.security.7.leaving.survey.responses, x = leaving_reason)
+
+
 
 
 #question-response data
