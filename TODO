@@ -1,3 +1,19 @@
+KEY POINTS
+- WHAT IS THE DROP OUT RATE?
+  - extract unique date values from the data and load into a new data frame
+  - count (perhaps convert date column to a factor then use levels?)
+- WHEN DO STUDENTS DROP OUT ON THE COURSE - ARE THESE CORRELATED WITH ANY SIGNIFICANT EVENTS?
+- ARE STUDENTS PARTICULARLY HAPPY AFTER CERTAIN LECTURES?
+- WHAT RECOMMENDATIONS CAN BE MADE? - ARE THERE THINGS THAT SHOULD BE FOCUSED ON MORE THAN OTHERS?
+Vertical lines on articular dates?
+
+NOTICE NOT ALL STUDENT IDS ARE UNIQUE FOR ROWS - ARE THESE REPEAT STUDENTS? OR ARE THESE FACULTY?
+
+
+
+
+
+
 Write Main README file
 Write data folder README file - add description of data (esp. new frames)
 

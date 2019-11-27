@@ -128,22 +128,22 @@ levels(enrollmentData$gender)
 levels(enrollmentData$country)
 ```
 * *age_range*, giving - for each row in the data - an age range within which the user's age falls (or 'Unknown' if the value is unknown). The following ranges are in the data:
-```{r}
+```{r age range, echo=FALSE}
 levels(enrollmentData$age_range)
 ```
 * *highest_education_level*, giving - for each row in the data - the highest educaton level attained by the user at time of taking the course (or 'Unknown' if the value is unknown). I assume this has been inputted by the user. The following levels are in the data:
-```{r}
+```{r education level, echo=FALSE}
 levels(enrollmentData$highest_education_level)
 ```
 * *employment_status*, giving - for each row in the data - the user's employment status at time of taking the course (or 'Unknown' if the value is unknown). I assume this has been inputted by the user. The following levels are in the data:
-```{r}
+```{r employment status, echo=FALSE}
 levels(enrollmentData$employment_status)
 ```
 * *employment_area*, giving - for each row in the data - the sector in which the user was employed at time of taking the course (or 'Unknown' if the value is unknown). I assume this has been inputted by the user. The following levels are in the data:
-```{r}
+```{r employment area, echo=FALSE}
 levels(enrollmentData$employment_area)
 ```
-* *detected_country*
+* *detected_country*, giving (I assume) the country the system detects the user in when taking the course (or "--" for unknown). *N.B. attempting to preview the levels in this field results in an error: "pandoc document conversion failed with error 11". Given time contraints, the list of countries is not previewed here. *
 
 ```{r structure of enrollment data, echo=FALSE}
 str(enrollmentData)
@@ -159,16 +159,6 @@ str(enrollmentData)
 Need to demonstrate the relative amounts of data that is present to absent.
 Given the small amount of data present, is unclear that there is reason to consider any finding significant.
 
-```{r cars}
+```{r archetype, echo=FALSE}
 qplot(data = archetypeData, x = archetype, fill = archetype)
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

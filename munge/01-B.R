@@ -2,7 +2,7 @@
 # Enrollment data
 #str(cyber.security.1.enrolments) # check structure and identify date columns
 
-#add courseID columns
+#add courseID columns - ideally should be a loop with the merge to account for arbitrary numbers of rows/files
 cyber.security.1.enrolments$courseID <- 1
 cyber.security.2.enrolments$courseID <- 2
 cyber.security.3.enrolments$courseID <- 3
@@ -13,8 +13,8 @@ cyber.security.7.enrolments$courseID <- 7
 
 
 #merge datasets
-enrollmentData <- rbind(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
-      cyber.security.6.enrolments, cyber.security.7.enrolments)
+enrollmentData <- rbind(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, 
+                        cyber.security.5.enrolments, cyber.security.6.enrolments, cyber.security.7.enrolments)
 #summary(enrollmentData)
 #str(enrollmentData)
 
@@ -24,32 +24,26 @@ enrollmentData$courseID <- factor(enrollmentData$courseID)
 #levels(enrollmentData$courseID)
 
 
-#replace missing values with NA
-library(dplyr)
-enrollmentData$unenrolled_at <- na_if(enrollmentData$unenrolled_at, "")
-enrollmentData$fully_participated_at <- na_if(enrollmentData$fully_participated_at, "")
-enrollmentData$purchased_statement_at <- na_if(enrollmentData$purchased_statement_at, "")
-enrollmentData$gender <- na_if(enrollmentData$gender, "Unknown")
-enrollmentData$country <- na_if(enrollmentData$country, "Unknown")
-enrollmentData$age_range <- na_if(enrollmentData$age_range, "Unknown")
-enrollmentData$highest_education_level <- na_if(enrollmentData$highest_education_level, "Unknown")
-enrollmentData$employment_status <- na_if(enrollmentData$employment_status, "Unknown")
-enrollmentData$employment_area <- na_if(enrollmentData$employment_area, "Unknown")
-enrollmentData$detected_country <- na_if(enrollmentData$detected_country, "--")
+#replace missing values to NA and re-convert to factor to ensure correct level values in the factors
+enrollmentData$gender <- as.factor(as.character(na_if(enrollmentData$gender, "Unknown")))
+enrollmentData$country <- as.factor(as.character(na_if(enrollmentData$country, "Unknown")))
+enrollmentData$age_range <- as.factor(as.character(na_if(enrollmentData$age_range, "Unknown")))
+enrollmentData$highest_education_level <- as.factor(as.character(na_if(enrollmentData$highest_education_level, "Unknown")))
+enrollmentData$employment_status <- as.factor(as.character(na_if(enrollmentData$employment_status, "Unknown")))
+enrollmentData$employment_area <- as.factor(as.character(na_if(enrollmentData$employment_area, "Unknown")))
+enrollmentData$detected_country <- as.factor(as.character(na_if(enrollmentData$detected_country, "--")))
+#levels(enrollmentData$detected_country) #quick check
+#str(enrollmentData) #quick check
 
 
-#Create date columns from factor columns
-#typeof(enrollmentData$enrolled_at)
-#typeof(as.character(enrollmentData$enrolled_at))
-enrollmentData$enrollment_date <- as.Date(as.character(enrollmentData$enrolled_at))
-enrollmentData$unenrollment_date <- as.Date(as.character(enrollmentData$unenrolled_at))
-enrollmentData$fully_participated_date <- as.Date(as.character(enrollmentData$fully_participated_at))
-enrollmentData$purchased_statement_date <- as.Date(as.character(enrollmentData$purchased_statement_at))
-
-
-#Huge amount of NA values - deal with by creating frames for each type of information for each particular analysis?
+#Conversion of Factor Columns to Date Columns
+#?POSIXct #guidance for POSIXct
+enrollmentData$enrolled_at <- as.POSIXct(enrollmentData$enrolled_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+enrollmentData$unenrolled_at <- as.POSIXct(enrollmentData$unenrolled_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+enrollmentData$fully_participated_at <- as.POSIXct(enrollmentData$fully_participated_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+enrollmentData$purchased_statement_at <- as.POSIXct(enrollmentData$purchased_statement_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+#str(enrollmentData) #quick check
 
 
 #remove redundant datasets
-rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,
-   cyber.security.6.enrolments, cyber.security.7.enrolments)
+rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,cyber.security.6.enrolments, cyber.security.7.enrolments)

@@ -1,2 +1,2 @@
-01-A: deleting empty archetype data sets; merging remaining archetype datasets with rbind; removing old datasets.
-01-B: 
+01-A: archetype data; deleting empty archetype data sets; assignment of courseID values; merging remaining archetype datasets with rbind; removing old datasets.
+01-B: enrollment data; assignment of courseID values; merging enrollment data with rbind; replacing missing values with 'NA'
