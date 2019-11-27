@@ -39,16 +39,12 @@ activityData$step_number <- factor(activityData$step_number)
 activityData$step <- factor(activityData$step)
 
 
-#Create date columns from factor columns
-activityData$first_visited_date <- as.Date(as.character(activityData$first_visited_at))
-activityData$last_completed_at <- na_if(activityData$last_completed_at, "")
-#activityData$last_completed_at
-activityData$last_completed_date <- as.Date(as.character(activityData$last_completed_at))
-
-
-#testing
+#Conversion of Factor Columns to Date Columns
+#?POSIXct #guidance for POSIXct
+activityData$first_visited_at <- as.POSIXct(activityData$first_visited_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+activityData$last_completed_at <- as.POSIXct(activityData$last_completed_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+#str(enrollmentData) #quick check
 #View(activityData)
-#str(activityData)
 
 
 #remove redundant datasets

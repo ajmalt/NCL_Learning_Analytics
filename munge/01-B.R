@@ -45,5 +45,11 @@ enrollmentData$purchased_statement_at <- as.POSIXct(enrollmentData$purchased_sta
 #str(enrollmentData) #quick check
 
 
+#Join enrollment data with archetype data
+enrollmentData <- merge(x = enrollmentData, y = archetypeData, 
+                        by.x = c("learner_id", "courseID"), by.y = c("learner_id", "courseID"), 
+                        all.x = TRUE)
+
+
 #remove redundant datasets
-rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,cyber.security.6.enrolments, cyber.security.7.enrolments)
+rm(archetypeData, cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,cyber.security.6.enrolments, cyber.security.7.enrolments)

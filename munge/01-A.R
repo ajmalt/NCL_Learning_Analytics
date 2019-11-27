@@ -17,8 +17,12 @@ archetypeData <- rbind(cyber.security.3.archetype.survey.responses, cyber.securi
 
 #convert courseID to factor
 archetypeData$courseID <- factor(archetypeData$courseID)
-class(archetypeData$courseID)
+#class(archetypeData$courseID)
 
+
+#remove columns that are irrelevant for subsequent analysis
+archetypeData$id <- NULL
+archetypeData$responded_at <- NULL
 
 #remove redundant datasets
 rm(cyber.security.3.archetype.survey.responses, cyber.security.4.archetype.survey.responses, cyber.security.5.archetype.survey.responses,

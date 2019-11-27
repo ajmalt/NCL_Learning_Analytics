@@ -1,6 +1,6 @@
 #-----Initial data exploration
-library(ProjectTemplate)
-load.project() #Load project and data
+#library(ProjectTemplate)
+#load.project() #Load project and data
 
 
 #archetype survey responses
