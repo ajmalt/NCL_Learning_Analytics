@@ -1,24 +1,5 @@
-#Initial exploration of time series data
-#enrollments - note how people on the first run of the course continue to enroll in the first run on subsequent runs - why? Are these staff?
-qplot(data = enrollmentData, x = enrolled_at, fill = courseID)
-
-#unenrollments - Interesting, so people from the first run of the course are unenrolled up to two years after a lot of their coursemates
-qplot(data = enrollmentData, x = unenrolled_at, fill = courseID)
-#explore with facets and see if there is a pattern when breaking down...
-
-#fully_participated_at - WTF does this mean?
-qplot(data = enrollmentData, x = fully_participated_at, fill = courseID)
-#does this mean completion?
-
-#purchased_statement_at
-qplot(data = enrollmentData, x = purchased_statement_at, fill = courseID)
-#calculate conversion rate?
-
-
-
-
-#More detailed analysis of unenrollment
-unenrollmentSubset <- enrollmentData[complete.cases(enrollmentData[,4]),]
+#Unenrollment analysis
+unenrollmentSubset <- enrollmentData[complete.cases(enrollmentData[,4]),] #subset which only contains unenrollment information
 
 #broken down by course ID
 ggplot(data = unenrollmentSubset, aes(x = unenrolled_at, fill = courseID)) +
@@ -107,59 +88,43 @@ ggplot(data = unenrollmentSubset, aes(x=courseID, y=duration, colour = courseID)
   ggtitle("Durations from enrollment to unenrollment by course run") +
   theme(legend.position = "none")
 
-
-#CREATE NEW DATA FRAME SHOWING THE 
-
-
-#RECOMMENDATIONs - WHAT ARE THE REASONS FOR DROPPING OUT - MOSTLY TIME? MOSTLY TIME AT THE RELEVANT POINT? can this bit be split apart?
-
+#join leaving response data - perhaps create a new dataset?
+unenrolledFeedback <- merge(x = unenrollmentSubset, y = leavingSurveyData, 
+                        by.x = c("learner_id", "courseID"), by.y = c("learner_id", "courseID"), 
+                        all.x = FALSE)
 
 
+#Jitter/Box: Duration enrolled, reason for leaving, and last completed week
+ggplot(data = unenrolledFeedback, aes(x = leaving_reason, y = duration, colour = last_completed_week_number)) +
+  geom_jitter(size=2) +
+  geom_boxplot(size = 1.2, colour = "brown", alpha = 0.3) +
+  xlab("Reason for leaving") + ylab("Duration enrolled (weeks)") +
+  ggtitle("Duration enrolled by reason given for leaving")
 
 
+#Bar chart: Freqencies of reasons for leaving by last completed week, by course run
+ggplot(data = unenrolledFeedback, aes(x = leaving_reason, fill = last_completed_week_number)) +
+  geom_bar() +
+  facet_grid(courseID~.) +
+  xlab("Reason for leaving") + ylab("Frequency") +
+  labs (fill = "Last completed week") +
+  ggtitle("Frequencies of reasons for leaving by last completed week number")
 
 
-#Old crap - delete when done
-
-#Obtain unique date values from enrollment data
-a <- unique(enrollmentData$enrollment_date)
-b <- unique(enrollmentData$unenrollment_date)
-c <- unique(enrollmentData$fully_participated_date)
-d <- unique(enrollmentData$purchased_statement_date)
-
-significantDates <- c(a,b,c,d)
-significantDates <- unique(significantDates)
-#class(significantDates) #quick check
-
-rm(a, b, c, d)
-
-#count occurence of significant dates in enrollment data
-#count enrollments on each significant date
-enrollments <- c()
-for (sigDate in significantDates){
-  x <- sum(enrollmentData$enrollment_date == sigDate)
-  enrollments <- c(enrollments, x)
-}
-
-qplot(x= significantDates, y = enrollments, geom = "line")
-
-#count unenrollments on signficant dates
-unenrollments <- NULL
-x <- NULL
-for (sigDate in significantDates){
-  x <- sum(enrollmentData$unenrollment_date == sigDate)
-  #unenrollments <- c(unenrollments, x)
-  print(x)
-}
-print(unenrollments)
-
-qplot(x= significantDates, y = unenrollments)
-
-rm(x, sigDate)
+#Bar chart: Freqencies of reasons for leaving by last completed week, by course run
+ggplot(data = unenrolledFeedback, aes(x = leaving_reason, fill = last_completed_week_number)) +
+  geom_bar() +
+  facet_grid(courseID~.) +
+  xlab("Reason for leaving") + ylab("Frequency") +
+  labs (fill = "Last completed week") +
+  ggtitle("Frequencies of reasons for leaving by last completed week number")
 
 
-newDF <- cbind.data.frame(significantDates, enrollments)
+#weeks completed, by leaving reason
+ggplot(data = unenrolledFeedback, aes(x = last_completed_week_number, fill=leaving_reason)) +
+  geom_bar()
 
-str(newDF)
 
-print(newDF[1,1])
+#steps completed, by leaving reason
+ggplot(data = unenrolledFeedback, aes(x = last_completed_step, fill=leaving_reason)) +
+  geom_bar()

@@ -22,9 +22,8 @@ sentimentData$week_number <- factor(sentimentData$week_number)
 
 
 #create responded_date column
-sentimentData$responded_date <- as.Date(as.character(sentimentData$responded_at))
+sentimentData$responded_at <- as.POSIXct(sentimentData$responded_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
 #str(sentimentData) # checking column types
-
 
 #remove redundant datasets
 rm(cyber.security.5.weekly.sentiment.survey.responses, 

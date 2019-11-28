@@ -50,6 +50,10 @@ enrollmentData <- merge(x = enrollmentData, y = archetypeData,
                         by.x = c("learner_id", "courseID"), by.y = c("learner_id", "courseID"), 
                         all.x = TRUE)
 
+#Create unrolled subset and determine duration
+unenrollmentSubset <- enrollmentData[complete.cases(enrollmentData[,4]),] #subset which only contains unenrollment information
+unenrollmentSubset$enrolledInterval <- as.duration(unenrollmentSubset$enrolled_at %--% unenrollmentSubset$unenrolled_at) #calculate course duration
+unenrollmentSubset$duration <- as.duration(unenrollmentSubset$enrolledInterval) / dweeks(1) #calculate course duration in weeks
 
 #remove redundant datasets
-rm(archetypeData, cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,cyber.security.6.enrolments, cyber.security.7.enrolments)
+rm(cyber.security.1.enrolments, cyber.security.2.enrolments, cyber.security.3.enrolments, cyber.security.4.enrolments, cyber.security.5.enrolments,cyber.security.6.enrolments, cyber.security.7.enrolments)

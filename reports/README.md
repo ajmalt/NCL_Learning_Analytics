@@ -1,1 +1,3 @@
-Here you can store any output reports, such as HTML or LaTeX versions of tables, that you produce. Sweave or brew documents should also go in the `reports` directory.
+This folder contains:
+- CRISP_DM outputs (numbered, e.g. '2_1 Initial data collection report.Rmd')
+- Presentation slides (.Rmd script and 'Learning analytics presentation.pdf')

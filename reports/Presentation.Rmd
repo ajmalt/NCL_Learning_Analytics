@@ -1,0 +1,101 @@
+---
+title: "Analysing causes of unenrollments"
+author: "Alexander J Malt"
+date: "28/11/2019"
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+```
+
+```{r project, include=FALSE}
+library(ProjectTemplate)
+load.project()
+source("src/Presentation.R")
+```
+
+
+## Aims
+
+- Identify a trend in data relating to unenrollment.
+- Identify and assess the reasons students unroll from the course.
+- Recommendations in light of data.
+
+## Initial exploration
+
+```{r earlyTrend, echo = FALSE, message=FALSE, warning=FALSE}
+initialQuickPlot
+```
+
+## Breaking down unenrollment by course run
+
+```{r detailedTrend, echo = FALSE, message=FALSE, warning=FALSE}
+unenrollCoursePlot
+```
+
+## Explanations?
+
+The pattern seemed to be maintained across
+
+- Age ranges
+- Gender
+- Employment sector
+- Personality archetype
+- etc.
+
+## Age ranges
+
+```{r agePlot, echo = FALSE, message=FALSE, warning=FALSE}
+agePlot
+```
+
+
+## Gender
+
+```{r genderPlot, echo = FALSE, message=FALSE, warning=FALSE}
+genderPlot
+```
+
+
+## New theory: A particular part of the course?
+
+```{r boxPlot, echo = FALSE, message=FALSE, warning=FALSE}
+durationPlot
+```
+
+
+## Digging deeper: leaving survey data
+
+```{r leavingData, echo = FALSE, message=FALSE, warning=FALSE}
+reasonUnenrolled
+```
+
+
+## Completed weeks of the course
+
+```{r weekCompletion, echo = FALSE, message=FALSE, warning=FALSE}
+reasonLeavingBar
+```
+
+
+## Breaking down by course run
+
+```{r reasonLeavingFacet, echo = FALSE, message=FALSE, warning=FALSE}
+reasonLeavingFacet
+```
+
+
+## Completed steps
+
+```{r stepCompletion, echo = FALSE, message=FALSE, warning=FALSE}
+lastStepPlot
+```
+
+## Recommendations
+
+- **Prompts and reminders**: prompt those enrolled to complete bite-sized chunks of the course on a regular basis.
+- **Increase quantity of leaving survey data**: offer some money back provided that the leaving survey questionnaire is completed.

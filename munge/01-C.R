@@ -32,8 +32,8 @@ leavingSurveyData$last_completed_step_at <- na_if(leavingSurveyData$last_complet
 
 
 #Create date columns from factor columns
-leavingSurveyData$left_date <- as.Date(as.character(leavingSurveyData$left_at))
-leavingSurveyData$last_completed_step_date <- as.Date(as.character(leavingSurveyData$last_completed_step_at))
+leavingSurveyData$left_at <- as.POSIXct(leavingSurveyData$left_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+leavingSurveyData$last_completed_step_at <- as.POSIXct(leavingSurveyData$last_completed_step_at, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
 #str(leavingSurveyData)
 
 
@@ -51,6 +51,25 @@ leavingSurveyData$last_completed_step <- na_if(leavingSurveyData$last_completed_
 #class(leavingSurveyData$last_completed_step)
 #head(leavingSurveyData)
 
+
+#Compressing length of responses
+leavingSurveyData$leaving_reason <- gsub("I donâ€™t have enough time","Insufficient time",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("I prefer not to say","Undisclosed",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("The course required more time than I realised","Insufficient time",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("The course was too easy","Too easy",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("The course was too hard","Too hard",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("The course wasnâ€™t what I expected","Unexpected content",leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- gsub("The course wonâ€™t help me reach my goals","Content irrelevant",leavingSurveyData$leaving_reason)
+
+#typeof(leavingSurveyData$leaving_reason)
+leavingSurveyData$leaving_reason <- as.factor(leavingSurveyData$leaving_reason)
+#levels(leavingSurveyData$leaving_reason)
+
+
+#Creating new dataset joining unenrollments with feedback - moved to munging script 01-C
+unenrolledFeedback <- merge(x = unenrollmentSubset, y = leavingSurveyData, 
+                            by.x = c("learner_id", "courseID"), by.y = c("learner_id", "courseID"), 
+                            all.x = FALSE)
 
 #remove redundant datasets
 rm(cyber.security.4.leaving.survey.responses, cyber.security.5.leaving.survey.responses, 

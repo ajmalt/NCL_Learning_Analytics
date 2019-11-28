@@ -1,0 +1,36 @@
+---
+title: "2_1 Initial data collection report"
+author: "Alexander J Malt"
+date: "28/11/2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+```
+
+```{r project, include=FALSE}
+library(ProjectTemplate)
+load.project()
+source("src/initialExploration.R")
+```
+
+# Initial data collection report
+
+The University provided dataset from 7 runs of an online cyber-security course. The data provided was in csv format. The data concerned the following areas:
+
+* User activity;
+* User personality archetypes;
+* User enrollment;
+* Leaving survey responses;
+* Assessment data;
+* Team members; and
+* Video statistics.
+
+This data was supported by 7 PDF documents, each providing further information about a particular run of the course (start and end dates, information about each 'step' of the course, etc.).
+
+*N.B. Because this data was provided directly by the University there is no description of the data's background, sources (systems), method of extraction, etc.*
