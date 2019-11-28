@@ -2,7 +2,9 @@
 title: "6_3 Final report"
 author: "Alexander J Malt"
 date: "28/11/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +18,7 @@ load.project()
 source("src/timeSeries.R")
 ```
 
-This report summarises:
+This report outlines:
 
 * the business understanding;
 * how the exploratory data analysis (**EDA**) was performed (method, process and tools);
@@ -26,11 +28,10 @@ This report summarises:
 * the conclusions for the business; and
 * the conclusions for further data mining.
 
-*N.B. CRISP-DM Final Reports usually contain a summary of deployment and maintenance plans. This is not a model to be deployed and maintained, and therefore this part of the final report is ommited.*
 
-# Abstract
+# Summary
 
-tl;dr
+The university provided a set of data from a series of 'runs' of an online cyber security course. This project is an exploratory data analysis - there were no set business objectives or success criteria given at the outset. I analysed unenrollment data to see whether I could identify an underlying cause of students leaving the course (and whether this occured at specific points in time). The attempt was unsuccessful: the data does not seem to reveal any clear underlying causes, and the quantity of data available for analysis significantly lessens as we focus on particular areas. However, it did reveal that many students remained enrolled on the course for a while despite completing *none* of the content. On this basis I recommend the University considers a means to prompt students to complete 'bite sized chunks' of the course more regularly (splitting longer content up if necessary), thereby inducing action and making it easy to find time throughout the day to study. I also recommend the university improve the quality and quantity of data available, both by incentivising students to complete input more data and by extracting more precise information from the sources of the data provided to facilitate more detailed analysis.
 
 
 # Business understanding
@@ -125,18 +126,27 @@ stepsCompleted
 
 # Evaluation of results
 
-A principle weakness of these results is that as the analyses become deeper and more specific, the amount of available data goes down. For example, not everyone who unenrolled from the course also completed a leaving questionaire or personality test. Therefore the data quality is 
+The analysis unfortunately yielded little of practical value (though see recommendations in 'Conclusions for the business', below).
+
+A principle weakness is that, as the analyses become deeper and more specific, the amount of available data goes down. For example, not everyone who unenrolled from the course also completed a leaving questionaire or a personality test. Therefore there are only very limited subsets of data available to explore these potential connections.
+
 
 # Costs/benefits of the EDA
 
-?
+The analysis yielded little benefit.
+
+By contrast the cost was extensive (estimated at 12 days continuous work; a further 3 days being required to upskill to the required technical level).
+
 
 # Conclusions for the business
 
-Given that the
+There are two recommendations that can be made on the basis of this report:
 
-Assuming the University wishes to reduce the amount of students unenrolling from the course, there is a...
+1. **Additional data capture:** Mechanisms to incentivise or make mandatory further data input would increase the amount of data available and enable us to draw out any patterns that might be present. This could be acheived by, e.g. offering some money back upon completion of a leaving questionnaire or making it mandatory to complete a personality test at a certain step of the course.
+
+2. **Daily prompts:** The amount of people who unenroll after a significant amount of time but have not completed a single step of the course could imply that they are signing up then never finding the time to log into the course. Given this, it could be worth considering giving users prompts to complete parts of the course in bite-sized chunks (perhaps accomodating this by splitting up longer content, or producing content that is short duration but can easily be slotted into a busy day, e.g. a commute).
+
 
 # Conclusions for further data mining
 
-As the analysis proceeded I encountered more data quality issues.
+As the analysis proceeded I encountered issues relating to data quality. For example, video statistics data is broken down by video, not by student. This means that it could not be merged/joined with the enrollment data to determine, e.g. whether the length of time watched of videos correlates with the propensity to unenrol from the course. It also means that we cannot see, e.g. whether video are watched repeatedly by a few people or few times by many people. Before engagin in further data mining it would be worth looking at how the quality of the data could be increased via a close examination of the systems in which this data originates.
