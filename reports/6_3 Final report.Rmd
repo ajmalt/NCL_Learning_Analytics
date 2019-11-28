@@ -1,0 +1,142 @@
+---
+title: "6_3 Final report"
+author: "Alexander J Malt"
+date: "28/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+```
+
+```{r project, include=FALSE}
+library(ProjectTemplate)
+load.project()
+source("src/timeSeries.R")
+```
+
+This report summarises:
+
+* the business understanding;
+* how the exploratory data analysis (**EDA**) was performed (method, process and tools);
+* the results of the EDA;
+* the evaluation of the results of the EDA;
+* the cost/benefits of the EDA;
+* the conclusions for the business; and
+* the conclusions for further data mining.
+
+*N.B. CRISP-DM Final Reports usually contain a summary of deployment and maintenance plans. This is not a model to be deployed and maintained, and therefore this part of the final report is ommited.*
+
+# Abstract
+
+tl;dr
+
+
+# Business understanding
+
+This project is exploratory data analysis (**EDA**): the University gave no clear questions or hypotheses at the outset, i.e. there were no business objectives and no correlated success criteria.
+
+Instead, the University provided data from multiple 'runs' of an online cyber-security course. The objective of the EDA is to examine the data, see whether any avenues of investigation suggest themselves, perform an anaylsis and report the results.
+
+The University provided data from the course relating to the following:
+
+* User activity;
+* User personality archetypes;
+* User enrollment;
+* Leaving survey responses;
+* Assessment data;
+* Team members; and
+* Video statistics.
+
+
+# EDA: Method, process and tools
+
+**Tools:** The EDA project was conducted with the R programming language using R Studio. The following additional packages were also used:
+
+* [ProjectTemplate](http://projecttemplate.net/)
+* [plyr](https://www.rdocumentation.org/packages/plyr/versions/1.8.4)
+* [lubridate](https://lubridate.tidyverse.org/)
+* [ggplot2](https://ggplot2.tidyverse.org/)
+* [rmarkdown](https://rmarkdown.rstudio.com/)
+* [tinytex](https://cran.r-project.org/web/packages/tinytex/index.html)
+
+**Method/process:** The method used in this EDA project is an implementation of the Cross Industry Standard Process for Data Mining (**CRISP-DM**).
+
+1. **Business Understanding:** reading the supplied materials and listening to an initial outline of the data by stakeholders from the University.
+2. **Data Understanding:** Gaining an initial familiarity with the structure and content of the data; identifying which files shared common structure; determining and assuming the meaning of parituclar fields in the data; early explorations using basic plots (charts and graphs) to see what avenues of investigation suggested themselves.
+3. **Data Preparation:** Merging files relating to the the same topics, i.e. all files containing data relating to the same area (e.g. all enrollment data) were merged into single 'frame' to facilitate later analysis; reformatting the data (e.g. ensuring that dates are formatted correctly) to facilitate later analysis; creating subsets of the data for latter analysis.
+    + Prior to being merged, each row of each individual data file was assigned a number to ensure it could be traced to a particular run of the course, e.g. '3' would denote that the row is from the third run of the course. This enabled comparison of data across course runs.
+4. **Detailed Investigation:** creating more advanced graphs and plots in order to analyse particular aspects of the data in more detail. This phase resulted in a series of plots 'slicing' the data in numerous ways (see below for the plot). *N.B. In CRISP-DM this is referred to as the 'Modelling' phase. However no formal models were created in this project. To avoid confusion I refer to this phase as Detailed Investigation.*
+5. **Evaluation:** assessing the validity and utility of the results for the University, and making recommendations relating to (i) the course itself and (ii) improving data captured on the course.
+6. **Presentation:** A presentation of the results was given using slides generated via R and the additional libraries. This report presents the same analysis and recommendations using the same text. *N.B. In CRISP-DM this is referred to as the 'Deployment' phase. Although this analysis aims to be reproducible, there is no model to deploy. To avoid confusion I therefore refer to this phase as 'Presentation'.*
+
+N.B. Steps 2-5 in the CRISP-DM process are iterative. The actual investigation involved many cycles and included (i) multiple 'dead-ends' during investigation and (ii) more detailed examination into particular patterns/areas. This report presents a final 'polished view' of the results and recommendations; it does not describe each cycle in detail.
+
+
+# EDA results
+
+During initial Data Understanding I performed a basic plot of data concerning when students unenrolled from the course:
+
+```{r quickplot, echo = FALSE, message=FALSE, warning=FALSE}
+initialPlot
+```
+
+The pattern that suggested itself in the above plot is that there are a large number of unenrollments relatively close to the beginning of the start of a course run, with less unenrollments as time goes on. To see whether this was true I produced a more sophisticated plot, breaking the dataset down by course run:
+
+```{r courseID breakdown, echo = FALSE, message=FALSE, warning=FALSE}
+courseBreakdown
+```
+
+I therefore decided to investigate the cause of the high unenrollment rate near the start of each course run. I first looked to see whether there was a visible difference in this pattern when the data was sliced according to other attibutes, e.g. age, gender, employment status, personality archetype, etc. However, none of these attributes seemed to be the main cause of the unenrollment rate. See, for example the plots showing the data sliced be age range and gender (code for other plots showing the data sliced by other attributes can be found in the relevant source code):
+
+```{r age plot, echo = FALSE, message=FALSE, warning=FALSE}
+agePlot
+```
+
+```{r gender plot, echo = FALSE, message=FALSE, warning=FALSE}
+genderPlot
+```
+
+Without finding, e.g. a particular age range, gender, profession, etc., that could account for this pattern, I decided investigate whether there was an aspect of the course that was causing people to enroll, e.g. a particular lecture or test that people found too difficult or required too much time to become familiar with/proficiant at.
+
+To this end, I calculated the average duration that these students were enrolled on the course (in weeks) and plotted this information broken down by course with an boxplot overlay showing the median and inter-quartile range:
+
+```{r duration plot, echo = FALSE, message=FALSE, warning=FALSE}
+durationPlot
+```
+
+However, this plot does not show, e.g. a consistent median enrollment duration. One explanation for this is could be that the course is delivered online and that sudents are able study whenever they please (which would also account for the long enrollment durations).
+
+I therefore merged/joined (a) the data concerning unenrollment and durations enrolled with (b) results from a leaving questionnaire. I wished to see whether there was any pattern in the reasons given for unenrolling from the course (e.g. the subject matter being too complicated, the student having insufficient time to do the work, etc). For this new plot, I kept the duration on the y axis and continued to use a box plot to display the median and interquartile range. However, I clustered the points by reason for leaving and coloured the points by the student's 'last completed week' (i.e. if the student had completed all parts of the course scheduled for the first week of the course run, their last week would be week 1 - however, this does not mean that they did this in one week or that they unenrolled after a single week).
+
+```{r reason for leaving plot, echo = FALSE, message=FALSE, warning=FALSE}
+reasonLeaving
+```
+
+This did not reveal a particular reason for leaving correlated wth a particular point in time. However, given the large number of data points showing students who did not complete a single week's content - despite, in some cases, being enrolled for over 15 weeks and, in other cases, unenrolling immediately (not starting at all) - the plot does imply that we lack sufficient data to determine why students are unenrolling from the course.
+
+However, in case a lot of the unenrollments happened following a particular *step* in the course, I produced another plot to show the frequency of unenrollments following a particular step. This plot shows that the overwhelming majority of unenrollments occured without a single step being completed:
+
+```{r last completed step, echo = FALSE, message=FALSE, warning=FALSE}
+stepsCompleted
+```
+
+
+# Evaluation of results
+
+A principle weakness of these results is that as the analyses become deeper and more specific, the amount of available data goes down. For example, not everyone who unenrolled from the course also completed a leaving questionaire or personality test. Therefore the data quality is 
+
+# Costs/benefits of the EDA
+
+?
+
+# Conclusions for the business
+
+Given that the
+
+Assuming the University wishes to reduce the amount of students unenrolling from the course, there is a...
+
+# Conclusions for further data mining
+
+As the analysis proceeded I encountered more data quality issues.

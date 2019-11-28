@@ -1,8 +1,8 @@
-#Unenrollment analysis
-unenrollmentSubset <- enrollmentData[complete.cases(enrollmentData[,4]),] #subset which only contains unenrollment information
+#unenrollments - Interesting, so people from the first run of the course are unenrolled up to two years after a lot of their coursemates
+initialPlot <- qplot(data = enrollmentData, x = unenrolled_at, fill = courseID)
 
 #broken down by course ID
-ggplot(data = unenrollmentSubset, aes(x = unenrolled_at, fill = courseID)) +
+courseBreakdown <- ggplot(data = unenrollmentSubset, aes(x = unenrolled_at, fill = courseID)) +
   geom_histogram() +
   facet_grid(courseID~.) +
   xlab("Date unenrolled") + ylab("Frequency") +
@@ -22,7 +22,7 @@ ggplot(data = archetypeSubset, aes(x = unenrolled_at, fill = courseID)) +
 
 #2. Gender
 genderSubset <- unenrollmentSubset[complete.cases(unenrollmentSubset[,"gender"]),]
-ggplot(data = genderSubset, aes(x = unenrolled_at, fill = courseID)) +
+genderPlot <- ggplot(data = genderSubset, aes(x = unenrolled_at, fill = courseID)) +
   geom_histogram() +
   facet_grid(courseID~.~gender) +
   xlab("Date unenrolled") + ylab("Frequency") +
@@ -32,7 +32,7 @@ ggplot(data = genderSubset, aes(x = unenrolled_at, fill = courseID)) +
 
 #3. age #CAN THESE BE REORDERED?
 ageSubset <- unenrollmentSubset[complete.cases(unenrollmentSubset[,"age_range"]),]
-ggplot(data = ageSubset, aes(x = unenrolled_at, fill = courseID)) +
+agePlot <- ggplot(data = ageSubset, aes(x = unenrolled_at, fill = courseID)) +
   geom_histogram() +
   facet_grid(courseID~.~age_range) +
   xlab("Date unenrolled") + ylab("Frequency") +
@@ -77,29 +77,22 @@ ggplot(data = educationSubset, aes(x = unenrolled_at, fill = courseID)) +
   theme(legend.position = "none")
 
 
-#Course 'duration' analysis
-unenrollmentSubset$enrolledInterval <- as.duration(unenrollmentSubset$enrolled_at %--% unenrollmentSubset$unenrolled_at) #calculate course duration
-unenrollmentSubset$duration <- as.duration(unenrollmentSubset$enrolledInterval) / dweeks(1) #calculate course duration in weeks
-
-ggplot(data = unenrollmentSubset, aes(x=courseID, y=duration, colour = courseID)) +
+#Course duration analysis
+durationPlot <- ggplot(data = unenrollmentSubset, aes(x=courseID, y=duration, colour = courseID)) +
   geom_jitter() +
   geom_boxplot(size = 1.2, colour = "brown", alpha = 0.3) +
   xlab("Course run") + ylab("Duration enrolled (weeks)") +
   ggtitle("Durations from enrollment to unenrollment by course run") +
   theme(legend.position = "none")
 
-#join leaving response data - perhaps create a new dataset?
-unenrolledFeedback <- merge(x = unenrollmentSubset, y = leavingSurveyData, 
-                        by.x = c("learner_id", "courseID"), by.y = c("learner_id", "courseID"), 
-                        all.x = FALSE)
-
 
 #Jitter/Box: Duration enrolled, reason for leaving, and last completed week
-ggplot(data = unenrolledFeedback, aes(x = leaving_reason, y = duration, colour = last_completed_week_number)) +
+reasonLeaving <- ggplot(data = unenrolledFeedback, aes(x = leaving_reason, y = duration, colour = last_completed_week_number)) +
   geom_jitter(size=2) +
   geom_boxplot(size = 1.2, colour = "brown", alpha = 0.3) +
   xlab("Reason for leaving") + ylab("Duration enrolled (weeks)") +
-  ggtitle("Duration enrolled by reason given for leaving")
+  ggtitle("Duration enrolled by reason given for leaving") +
+  theme(legend.position = "top")
 
 
 #Bar chart: Freqencies of reasons for leaving by last completed week, by course run
@@ -126,5 +119,6 @@ ggplot(data = unenrolledFeedback, aes(x = last_completed_week_number, fill=leavi
 
 
 #steps completed, by leaving reason
-ggplot(data = unenrolledFeedback, aes(x = last_completed_step, fill=leaving_reason)) +
-  geom_bar()
+stepsCompleted <- ggplot(data = unenrolledFeedback, aes(x = last_completed_step, fill=leaving_reason)) +
+  geom_bar() +
+  theme(legend.position = "top")
